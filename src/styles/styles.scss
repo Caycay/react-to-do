@@ -1,0 +1,82 @@
+body{
+  font-size:14px;
+  margin: 100px 0 !important;
+  background-color: #F9F9F9;
+}
+.header {
+  text-align: center;
+  font-size: 3em;
+  font-weight: 300;
+  margin: 0 auto;
+}
+
+.list {
+  text-align: center;
+  &-name{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+    padding: 1em 5em;
+  }
+  &-section{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
+    align-items: center;
+    .btn-add{
+      background-color: darkgrey;
+      &:hover{
+        background-color: #6495ED;
+      }
+    }
+  }
+}
+
+.collection-item {
+  width: 100%;
+  margin: 3em auto;
+  padding: 2em 0;
+  background-color: white;
+  position: relative;
+  box-shadow: 2px 2px 25px 1px rgba(78, 78, 89, 1);
+  .items-list{
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    .item{
+      width: 60%;
+      display: flex;
+      &:hover{
+        color: #6495ED;
+      }
+      &__prop2{
+        margin: 0 5em;
+      }
+    }
+  }
+  .item-grup{
+    color: black;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    cursor: pointer;
+    &:hover{
+      color: #6495ED;
+    }
+  }
+
+  .inputs{
+    padding: 3em;
+
+  }
+  .add-item{
+    position: fixed;
+    left:75%;
+    bottom: 50%;
+  }
+}
+.collection-buttons{
+  display: flex;
+}
