@@ -6,8 +6,6 @@ import ItemAdd from "../item-add";
 import {createNewItem, setNewItem} from "../../actions/lists-actions";
 
 class CreateItemContainer extends Component {
-
-
     componentDidMount() {
         let item = this.props.item;
         item['listId'] = this.props.match.params.id;

@@ -25,25 +25,44 @@ export function setAllItems(id) {
         });
     }
 }
+export function setSingleList(idList, idItem) {
+    return function (dispatch) {
+        ApiService.apiGetItemById(apiServer.method.itemWithListId, idList, idItem).then(list => {
+            return dispatch({
+                type: types.SET_LIST,
+                payload: list
+            });
+        });
+    }
+}
 export function deleteList(id) {
     return function (dispatch) {
         ApiService.apiDelete(apiServer.method.listWithId, id);
 
     }
 }
+
 export function deleteItem(idI, idL) {
     return function (dispatch) {
         ApiService.apiDeleteItem(apiServer.method.itemWithListId, idI, idL)
     }
 }
+export function updateItem(item) {
+    return function (dispatch) {
+        ApiService.apiPut(apiServer.method.itemWithId, item);
+    }
+}
+
 export function createNewItem(item) {
     return function (dispatch) {
         ApiService.apiPost(apiServer.method.items, item);
     }
 }
+
 export function createNewList(list) {
     return function (dispatch) {
-        ApiService.apiPost(apiServer.method.lists, list);    }
+        ApiService.apiPost(apiServer.method.lists, list);
+    }
 }
 
 export function createNew(object) {
@@ -67,15 +86,6 @@ export function setNewList(list) {
     }
 }
 
-
-export function setSingleList(list) {
-    return function (dispatch) {
-        return dispatch({
-            type: types.SET_LIST,
-            payload: list
-        });
-    }
-}
 
 export function setSingleItem(item) {
     return function (dispatch) {
