@@ -41,6 +41,10 @@ export function createNewItem(item) {
         ApiService.apiPost(apiServer.method.items, item);
     }
 }
+export function createNewList(list) {
+    return function (dispatch) {
+        ApiService.apiPost(apiServer.method.lists, list);    }
+}
 
 export function createNew(object) {
     return {
