@@ -41,6 +41,7 @@ class ApiService {
     }
 
     static apiPost(endpointUrl, data) {
+        debugger;
         return fetch(apiServer.url + endpointUrl, {
             method: 'POST',
             mode: 'CORS',
@@ -50,7 +51,7 @@ class ApiService {
             }
         }).then(response => {
             return response;
-        }).catch(err => err);
+        }).catch(err => console.log(err));
     }
 
     static apiDelete(endpointUrl, id) {

@@ -6,10 +6,6 @@ import ListsView from '../lists-view';
 import {connect} from 'react-redux';
 
 export class ListsContainer extends Component {
-
-    constructor(props) {
-        super(props);
-    };
     componentDidMount(){
         this.getLists();
     }
@@ -29,7 +25,7 @@ export class ListsContainer extends Component {
 
 ListsContainer.propTypes = {
     actions: PropTypes.object.isRequired,
-    //lists: PropTypes.array.isRequired
+    lists: PropTypes.array.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

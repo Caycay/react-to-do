@@ -36,6 +36,12 @@ export function deleteItem(idI, idL) {
         ApiService.apiDeleteItem(apiServer.method.itemWithListId, idI, idL)
     }
 }
+export function createNewItem(item) {
+    return function (dispatch) {
+        ApiService.apiPost(apiServer.method.items, item);
+    }
+}
+
 export function createNew(object) {
     return {
         type: types.CREATE_NEW,

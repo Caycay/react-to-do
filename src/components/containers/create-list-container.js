@@ -9,12 +9,6 @@ import apiService from "../../api/services/api-http-service";
 
 class CreateListContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            list: {}
-        };
-    };
 
     addValue = e => {
         let list = Object.assign({}, this.props.list);
@@ -40,7 +34,7 @@ class CreateListContainer extends Component {
 
 CreateListContainer.propTypes = {
     actions: PropTypes.object.isRequired,
-    //lists: PropTypes.array.isRequired
+    list: PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

@@ -1,57 +1,39 @@
 import React, {Component} from 'react';
-import * as actions from '../../actions/lists-actions';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {apiServer} from "../../constant/const";
 import ItemAdd from "../item-add";
-import apiService from "../../api/services/api-http-service";
+import {createNewItem, setNewItem} from "../../actions/lists-actions";
 
 class CreateItemContainer extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            item: {}
-        };
-    };
 
-    componentWillMount() {
+    componentDidMount() {
         let item = this.props.item;
         item['listId'] = this.props.match.params.id;
-        this.props.actions.setNewItem(item);
+        this.props.setNewItem(item);
     };
 
-    createNew = () => {
-        apiService.apiPost(apiServer.method.items, this.props.item);
-       // window.location.reload();
-    };
-
-    addValue = e => {
-        let item = Object.assign({}, this.props.item);
-        item[e.target.name] = e.target.value;
-        this.props.actions.setNewItem(item);
-    };
 
     render() {
         const {item} = this.props;
         return (
             <ItemAdd item={item}
-                     onChange={this.addValue}
-                     onSaveClick={this.createNew}
+                     setNewItem={this.props.setNewItem}
+                     createNewItem={this.props.createNewItem}
             />
         );
     }
 }
 
 CreateItemContainer.propTypes = {
-    actions: PropTypes.object.isRequired,
+    setNewItem: PropTypes.func.isRequired,
+    createNewItem: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
+    return bindActionCreators({setNewItem, createNewItem}, dispatch);
 }
 
 function mapStateToProps(state) {
