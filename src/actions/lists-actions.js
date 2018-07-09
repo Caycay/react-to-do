@@ -35,6 +35,16 @@ export function setSingleList(idList, idItem) {
         });
     }
 }
+export function setListById(id) {
+    return function (dispatch) {
+        ApiService.apiGetById(apiServer.method.listWithId, id).then(list => {
+            return dispatch({
+                type: types.SET_LIST,
+                payload: list
+            });
+        });
+    }
+}
 export function deleteList(id) {
     return function (dispatch) {
         ApiService.apiDelete(apiServer.method.listWithId, id);
@@ -50,6 +60,11 @@ export function deleteItem(idI, idL) {
 export function updateItem(item) {
     return function (dispatch) {
         ApiService.apiPut(apiServer.method.itemWithId, item);
+    }
+}
+export function updateList(list) {
+    return function (dispatch) {
+        ApiService.apiPut(apiServer.method.listWithId, list);
     }
 }
 
