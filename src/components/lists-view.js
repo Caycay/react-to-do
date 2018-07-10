@@ -5,13 +5,6 @@ import ListName from "./list-name";
 import React, {Component} from 'react';
 
 export class ListsView extends Component{
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            list: {}
-        };
-    };
     generateListView() {
         const {lists} = this.props;
         if ((lists || []).length === 0) {
@@ -26,7 +19,7 @@ export class ListsView extends Component{
         })
     };
     remove = id => {
-        this.props.actions.deleteList(id);
+        this.props.deleteList(id);
         // wczytywanie listy na nowo ?
     };
     render() {
@@ -45,8 +38,4 @@ export class ListsView extends Component{
         )
     }
 }
-
-
-
-
 export default ListsView;
