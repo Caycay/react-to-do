@@ -1,62 +1,39 @@
 import React, {Component} from 'react';
-import * as actions from '../../actions/lists-actions';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ListEdit from '../list-edit'
-import {apiServer} from "../../constant/const";
-import ApiService from "../../api/services/api-http-service";
+import {setNewList, setSingleList, updateList} from "../../actions/lists-actions";
 
 export class UpdateListContainer extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            list: {}
-        };
-    };
 
     componentWillMount() {
         const id = this.props.match.params.id;
         this.setSingleList(id);
     };
-
-    update = e => {
-        let list = Object.assign({}, this.props.list);
-        list[e.target.name] = e.target.value;
-        this.props.actions.setNewList(list);
-    };
-
-    saveList = () => {
-        let list = this.props.list;
-        ApiService.apiPut(apiServer.method.listWithId, list);
-        window.location.reload();
-    };
-
     setSingleList = (id) => {
-        ApiService.apiGetById(apiServer.method.listWithId, id).then(x => {
-            this.props.actions.setSingleList(x);
-        });
+        this.props.setSingleList(id);
+
     };
 
     render() {
         return (
             <ListEdit
                 list={this.props.list}
-                onChange={this.update}
-                onSaveClick={this.saveList}
+                updateList={this.props.updateList}
+                setNewList={this.props.setNewList}
             />
         );
     }
 }
 UpdateListContainer.propTypes = {
-    actions: PropTypes.object.isRequired,
+    list: PropTypes.object.isRequired,
+    setSingleList: PropTypes.func.isRequired,
+    updateList: PropTypes.func.isRequired,
+    setNewList: PropTypes.func.isRequired
 };
 function mapDispatchToProps(dispatch) {
-
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
+    return bindActionCreators({setSingleList, updateList, setNewList}, dispatch);
 
 }
 function mapStateToProps(state) {

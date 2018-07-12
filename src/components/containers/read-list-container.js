@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-import * as actions from '../../actions/lists-actions';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import ListsView from '../lists-view';
 import {connect} from 'react-redux';
+import {setAllLists} from "../../actions/lists-actions";
+import {deleteList} from "../../actions/lists-actions";
 
 export class ListsContainer extends Component {
-
-    constructor(props) {
-        super(props);
-    };
     componentDidMount(){
         this.getLists();
     }
@@ -17,25 +14,25 @@ export class ListsContainer extends Component {
         return (
             <ListsView
                 lists={this.props.lists}
-
+                deleteList={this.props.deleteList}
             />
         );
     };
 
     getLists() {
-        this.props.actions.setAllLists();
+        this.props.setAllLists();
     };
 }
 
 ListsContainer.propTypes = {
     actions: PropTypes.object.isRequired,
-    //lists: PropTypes.array.isRequired
+    lists: PropTypes.array.isRequired,
+    setAllLists: PropTypes.func.isRequired,
+    deleteList: PropTypes.func.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
+    return bindActionCreators({setAllLists, deleteList}, dispatch);
 }
 
 function mapStateToProps(state) {
